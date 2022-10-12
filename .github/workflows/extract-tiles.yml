@@ -41,4 +41,4 @@ jobs:
           git config --global user.email 'action@github.com'
           git add .      
           git commit -am '[Auto] Moved tiles_to_add to existing_tiles'
-          git push
+          git push https://${{secrets.GH_TOKEN}}@github.com/albertkun/ucla_maapp_tiles_deploy.git

@@ -8,11 +8,12 @@ def main(argv):
     try:
         g = Github(argv[0])
         repo = g.get_repo("albertkun/ucla_maapp_tiles_deploy")
-        contents = repo.get_contents("./tiles_to_add")
+        contents = repo.get_contents("/tiles_to_add")
+        print(contents)
         try:
             download_and_extract_tiles(contents)
-        except:
-            print('No new tiles, or other tile error')
+        except Exception as e:
+            print(e)
     except Exception as e:
         print(e)
 
@@ -24,7 +25,7 @@ def download_and_extract_tiles(repo_contents):
         response_json = json.loads(response.text)
         file_url = response_json['download_url']
         filename = pathlib.Path(file_url).stem
-        outpath = f'../{pathlib.Path(file_url).stem}.zip'
+        outpath = f'./temp/{pathlib.Path(file_url).stem}.zip'
         r = requests.get(file_url, stream = True)
         with open(outpath, "wb") as target_zip:
             total_length = int(r.headers.get('content-length'))
