@@ -12,7 +12,7 @@ def main(argv):
         try:
             download_and_extract_tiles(contents)
         except:
-            print("No new tiles, or error downloading and extracting tiles")
+            print('No new tiles, or other tile error')
     except Exception as e:
         print(e)
 
@@ -40,7 +40,7 @@ def download_and_extract_tiles(repo_contents):
     
     print('Script complete')
     print(str(count) + ' tile(s) downloaded and extracted.')
-    
+
 if __name__ == "__main__":
    process_start = timeit.default_timer()
    main(sys.argv[1:])
