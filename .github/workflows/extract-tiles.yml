@@ -16,13 +16,11 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "./tiles_to_add/*.zip"
-
-
       - name: Extract tiles on server
         uses: garygrossgarten/github-action-ssh@release
         if: steps.check_files.outputs.files_exists == 'true'
         with:
-          command:  python tile_zip_grabber.py ${{secrets.GH_TOKEN}}
+          command: python tile_zip_grabber.py ${{secrets.GH_TOKEN}}
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSPHRASE }}
@@ -39,8 +37,8 @@ jobs:
         run: |
           cd ucla_maapp_tiles_deploy
           mv tiles_to_add/*zip existing_tiles/
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
           git add .      
           git commit -am '[Auto] Moved tiles_to_add to existing_tiles'
           git push
