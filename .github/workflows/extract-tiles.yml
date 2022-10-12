@@ -1,10 +1,10 @@
-name: "File existence check"
+name: "📁Unzip and Deploy new tiles🚀"
 
 on:
   push:
     branches: [ main ]
 jobs:
-  file_existence:
+  deploy_new_tiles:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -26,6 +26,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSPHRASE }}
+          port: ${{ secrets.PORT }}
         env:
           CI: true
       - name: Clone GuillaumeFalourd/poc-github-actions PUBLIC repository
